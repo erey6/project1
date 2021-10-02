@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 9px 9px;
+}
+
+.community-area {
+    /* display: none; */
+}
