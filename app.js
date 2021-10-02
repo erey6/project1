@@ -1,11 +1,11 @@
 const readableDate = (date) => {
-    
+
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-   const d = new Date(date)
+    const d = new Date(date)
     const monthIndex = d.getMonth();
     const day = d.getDate();
     const year = d.getFullYear();
-    console.log(date) `${months[monthIndex]} ${day}, ${year}`
+    return `${months[monthIndex]} ${day}, ${year}`
 
 }
 
@@ -20,13 +20,13 @@ $(() => {
 
     const renderData = (data, zipCode) => {
         //render the .reminder her 34 results for 60630
-       
+
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
         for (const request of data) {
-            readableDate(request.created_date)
+            const dateString = readableDate(request.created_date)
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
-            // $div.append($('<p>').text(`${readableDate}`))
+            $div.append($('<p>').text(`${dateString}`))
             // console.log(request.created_date);
             // console.log(request.community_area);
             // console.log(request.zip_code);
@@ -45,7 +45,7 @@ $(() => {
         }).then(
             (data) => {
 
-                renderData(data,zipCode)
+                renderData(data, zipCode)
             },
             () => {
                 console.log('bad request');
