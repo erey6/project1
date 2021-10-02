@@ -1,3 +1,14 @@
+const readableDate = (date) => {
+    
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+   const d = new Date(date)
+    const monthIndex = d.getMonth();
+    const day = d.getDate();
+    const year = d.getFullYear();
+    console.log(date) `${months[monthIndex]} ${day}, ${year}`
+
+}
+
 
 $(() => {
     $('form').on('submit', (event) => {
@@ -7,28 +18,34 @@ $(() => {
         downloadData(zipCode)
     })
 
-    const renderData = (data) => {
+    const renderData = (data, zipCode) => {
+        //render the .reminder her 34 results for 60630
+       
+        $('.reminder p').text(`${data.length} results for ${zipCode}`)
         for (const request of data) {
-            console.log(request.street_address);
-            console.log(request.created_date);
-            console.log(request.community_area);
-            console.log(request.zip_code)
+            readableDate(request.created_date)
+            const $div = $('<div>').addClass('row-result')
+            $div.append($('<p>').text(`${request.street_address}`))
+            // $div.append($('<p>').text(`${readableDate}`))
+            // console.log(request.created_date);
+            // console.log(request.community_area);
+            // console.log(request.zip_code);
+            $('.results').append($div)
         }
     }
 
     const downloadData = (zipCode) => {
 
-        console.log(zipCode)
         $.ajax({
             url: `https://data.cityofchicago.org/resource/v6vf-nfxy.json?sr_type=Tree%20Planting%20Request&duplicate=false&status=Open&zip_code=${zipCode}&$order=created_date%20DESC`,
             type: "GET",
             data: {
-                "$limit": 1000,
+                "$limit": 600,
             }
         }).then(
             (data) => {
 
-                renderData(data)
+                renderData(data,zipCode)
             },
             () => {
                 console.log('bad request');
