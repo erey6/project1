@@ -6,6 +6,10 @@ body {
     margin: 9px 9px;
 }
 
+.row-header {
+    font-weight: bold;
+}
+
 .community-area {
     display: none;
 }

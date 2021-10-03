@@ -78,29 +78,30 @@ const comAreas = ["",
     "Edgewater"]
 
 const readableDate = (date) => {
-
     // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const d = new Date(date)
     const month = d.getMonth() + 1;
     const day = d.getDate();
     const year = d.getFullYear();
     return `${month}/${day}/${year}`
-
 }
 
 
 $(() => {
+    //sets search type to open or completed request
+    //following line will look for either completion or create date for ordering
     let search = ''
+    let filteringDate = ''
     $('input').on('click', (e) => {
         const selection = $(e.target).val();
         if (selection === "Open tree requests") {
             search = 'Open'
+            filteringDate = 'created_date'
         } else {
             search = 'Completed'
+            filteringDate= 'closed_date'
         }
-    }
-
-    )
+    })
 
     $('form').on('submit', (event) => {
         event.preventDefault();
@@ -110,13 +111,24 @@ $(() => {
     })
 
     const renderData = (data, zipCode) => {
-        //render the .reminder her 34 results for 60630
+        //empty restults class
         $('.results').empty();
+        //set row header based on search
+        const $rowHeader = 
+            $('<div>').addClass('row-header')
+        
+        if (search === "Completed") {
+            $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date completed'), $('<p>').addClass('community-area').text('Community Area')])
+        } else {
+            $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date requested')])
+        }
+        $('.results').append($rowHeader)
+        //render the .reminder her 34 results for 60630
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
         for (const request of data) {
-             const $div = $('<div>').addClass('row-result')
+            const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
-            if (search === "completed") {
+            if (search === "Completed") {
                 const dateString = readableDate(request.closed_date)
                 $div.append($('<p>').text(`${dateString}`))
             } else {
@@ -132,10 +144,10 @@ $(() => {
     const downloadData = (zipCode) => {
 
         $.ajax({
-            url: `https://data.cityofchicago.org/resource/v6vf-nfxy.json?sr_type=Tree%20Planting%20Request&duplicate=false&status=${search}&zip_code=${zipCode}&$order=created_date%20DESC`,
+            url: `https://data.cityofchicago.org/resource/v6vf-nfxy.json?sr_type=Tree%20Planting%20Request&duplicate=false&status=${search}&zip_code=${zipCode}&$where=${filteringDate}>='2019-01-01T00:00:00'&$order=${filteringDate}%20DESC`,
             type: "GET",
             data: {
-                "$limit": 600,
+                "$limit": 5000,
             }
         }).then(
             (data) => {
