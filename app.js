@@ -136,6 +136,8 @@ $(() => {
         for (const request of data) {
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
+            const $communityArea = $('<p>').addClass('hidden').text(`${comAreas[request.community_area]}`)
+            const $ward = $('<p>').addClass('hidden').text(`City Ward: ${request.ward}`)
             if (search === "Completed") {
                 const dateString = readableDate(request.closed_date)
                 $rightSide = $('<div>').addClass('right-side')
@@ -150,13 +152,22 @@ $(() => {
                 $date = ($('<p>').text(`${dateString}`))
                 $moreButton = $('<button>').text('more').addClass('more-button')
                 $moreButton.on('click', (e) => {
+                    if ($(e.target).text()=== 'more') {
+                    $(e.target).text('less')}else {
+                        $(e.target).text('more')
+                    }
+                    $rightContents = $(e.target).parents().eq(1).children(1)
+                    $rightContents.eq(1).toggleClass('hidden')
+                    $rightContents.eq(2).toggleClass('hidden')
                     
+ 
                 } )
                 $date.append($moreButton)
-                $rightSide.append($date)
+                $rightSide.append([$date, $communityArea, $ward] )
+                // $rightSide.append($communityArea)
                 // $moreInfo = $('<p>').text(\)
             }
-            $div.append($('<p>').addClass('hidden').text(`${comAreas[request.community_area]}`))
+           
             $('.results').append($div)
             // console.log(request.status);
         }

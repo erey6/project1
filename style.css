@@ -38,6 +38,8 @@ body {
     width: 48%;
 }
 
+
+
 .row-result button {
     font-size: .8em;
     margin-left: 1em;
@@ -45,10 +47,13 @@ body {
 
 .right-side {
     display: flex;
+    flex-direction: column;
     width: 48%;
     justify-content: center;
+}
 
-
+.right-side p {
+    margin: .2em;
 }
 
 .hidden {
