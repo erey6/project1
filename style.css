@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    border: .3px solid gray;
 }
 
 body {
@@ -8,8 +9,57 @@ body {
 
 .row-header {
     font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+}
+.row-header p {
+    width: 48%;
+    text-align: center;
 }
 
 .community-area {
     display: none;
+}
+
+.results {
+    display: flex;
+    flex-flow: column;
+    text-align: left;
+}
+
+.row-result {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: .8em;
+}
+
+.row-result>p {
+    width: 48%;
+}
+
+.row-result button {
+    font-size: .8em;
+    margin-left: 1em;
+}
+
+.right-side {
+    display: flex;
+    width: 48%;
+    justify-content: center;
+
+
+}
+
+.hidden {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .community-area {
+        display: contents;
+    }
+
+
+
 }

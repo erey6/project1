@@ -86,6 +86,14 @@ const readableDate = (date) => {
     return `${month}/${day}/${year}`
 }
 
+const calculateDaysTook = (endDate, startDate) => {
+    const endDateValue = new Date(endDate)
+    const startDateValue = new Date(startDate)
+    console.log('end', endDateValue);
+    console.log('start', startDateValue);
+    let diff = endDateValue - startDateValue
+    return Math.floor(diff/86400000)
+}
 
 $(() => {
     //sets search type to open or completed request
@@ -120,7 +128,7 @@ $(() => {
         if (search === "Completed") {
             $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date completed'), $('<p>').addClass('community-area').text('Community Area')])
         } else {
-            $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date requested')])
+            $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date requested'), $('<p>').addClass('community-area').text('Community Area')])
         }
         $('.results').append($rowHeader)
         //render the .reminder her 34 results for 60630
@@ -130,12 +138,25 @@ $(() => {
             $div.append($('<p>').text(`${request.street_address}`))
             if (search === "Completed") {
                 const dateString = readableDate(request.closed_date)
-                $div.append($('<p>').text(`${dateString}`))
+                $rightSide = $('<div>').addClass('right-side')
+                $div.append($rightSide)
+                $rightSide.append($('<p>').text(`${dateString}`))
+                const daysTook = calculateDaysTook(request.closed_date, request.created_date)
+                $rightSide.append($('<p>').text(`Days from request to completion: ${daysTook}`))
             } else {
                 const dateString = readableDate(request.created_date)
-                $div.append($('<p>').text(`${dateString}`))
+                $rightSide = $('<div>').addClass('right-side')
+                $div.append($rightSide)
+                $date = ($('<p>').text(`${dateString}`))
+                $moreButton = $('<button>').text('more').addClass('more-button')
+                $moreButton.on('click', (e) => {
+                    
+                } )
+                $date.append($moreButton)
+                $rightSide.append($date)
+                // $moreInfo = $('<p>').text(\)
             }
-            $div.append($('<p>').addClass('community-area').text(`${comAreas[request.community_area]}`))
+            $div.append($('<p>').addClass('hidden').text(`${comAreas[request.community_area]}`))
             $('.results').append($div)
             // console.log(request.status);
         }
