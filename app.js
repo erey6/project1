@@ -89,8 +89,8 @@ const readableDate = (date) => {
 const calculateDaysTook = (endDate, startDate) => {
     const endDateValue = new Date(endDate)
     const startDateValue = new Date(startDate)
-    console.log('end', endDateValue);
-    console.log('start', startDateValue);
+    // console.log('end', endDateValue);
+    // console.log('start', startDateValue);
     let diff = endDateValue - startDateValue
     return Math.floor(diff/86400000)
 }
@@ -136,38 +136,42 @@ $(() => {
         for (const request of data) {
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
-            const $communityArea = $('<p>').addClass('hidden').text(`${comAreas[request.community_area]}`)
+            const $communityArea = $('<p>').addClass('hidden').text(`Community Area: ${comAreas[request.community_area]}`)
             const $ward = $('<p>').addClass('hidden').text(`City Ward: ${request.ward}`)
+            const $rightSide = $('<div>').addClass('right-side')
+
+            //morebutton
+            const $moreButton = $('<button>').text('more').addClass('more-button')
+            $moreButton.on('click', (e) => {
+                if ($(e.target).text()=== 'more') {
+                $(e.target).text('less')}else {
+                    $(e.target).text('more')
+                }
+                const $rightContents = $(e.target).parents().eq(1).children(1)
+                console.log($rightContents.length)
+                //loops through right side contents, hides all but last chld
+                for (let i=$rightContents.length-1; i>0; i--) {
+                    $rightContents.eq(i).toggleClass('hidden')
+                }
+            } )
+
             if (search === "Completed") {
                 const dateString = readableDate(request.closed_date)
-                $rightSide = $('<div>').addClass('right-side')
                 $div.append($rightSide)
-                $rightSide.append($('<p>').text(`${dateString}`))
+                const $date = $('<p>').text(`${dateString}`)
                 const daysTook = calculateDaysTook(request.closed_date, request.created_date)
-                $rightSide.append($('<p>').text(`Days from request to completion: ${daysTook}`))
+                const $daysTookText = $('<p>').text(`Days from request to completion: ${daysTook}`)
+                $daysTookText.addClass('hidden')
+                $date.append($moreButton)
+                $rightSide.append([$date, $daysTookText, $communityArea, $ward] )
             } else {
                 const dateString = readableDate(request.created_date)
-                $rightSide = $('<div>').addClass('right-side')
                 $div.append($rightSide)
-                $date = ($('<p>').text(`${dateString}`))
-                $moreButton = $('<button>').text('more').addClass('more-button')
-                $moreButton.on('click', (e) => {
-                    if ($(e.target).text()=== 'more') {
-                    $(e.target).text('less')}else {
-                        $(e.target).text('more')
-                    }
-                    $rightContents = $(e.target).parents().eq(1).children(1)
-                    $rightContents.eq(1).toggleClass('hidden')
-                    $rightContents.eq(2).toggleClass('hidden')
-                    
- 
-                } )
+                const $date = ($('<p>').text(`${dateString}`))
                 $date.append($moreButton)
                 $rightSide.append([$date, $communityArea, $ward] )
-                // $rightSide.append($communityArea)
-                // $moreInfo = $('<p>').text(\)
             }
-           
+            
             $('.results').append($div)
             // console.log(request.status);
         }
