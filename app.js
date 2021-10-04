@@ -128,6 +128,9 @@ $(() => {
         const zipCode = $('input[type="text"]').val();
         $('form').trigger('reset');
         downloadData(zipCode, oldestDate)
+        //also resets timespan dropdown to first one
+       $('#time-span').val('2019')
+        
     })
 
 
