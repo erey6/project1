@@ -92,6 +92,7 @@ const calculateDaysTook = (endDate, startDate) => {
     // console.log('end', endDateValue);
     // console.log('start', startDateValue);
     let diff = endDateValue - startDateValue
+    //returns difference in days 
     return Math.floor(diff/86400000)
 }
 
@@ -136,6 +137,7 @@ $(() => {
         for (const request of data) {
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
+            //pulls community area name from array
             const $communityArea = $('<p>').addClass('hidden').text(`Community Area: ${comAreas[request.community_area]}`)
             const $ward = $('<p>').addClass('hidden').text(`City Ward: ${request.ward}`)
             const $rightSide = $('<div>').addClass('right-side')
@@ -196,4 +198,13 @@ $(() => {
         )
 
     }
+    const $about = $('.fa-info-circle')
+    $about.on('click', (e) => {
+        $('#modal').css('display', 'block')
+    })
+
+    const $modalClose = $('#close')
+    $modalClose.on('click', (e) => {
+        $('#modal').css('display', 'none');
+    }) 
 })

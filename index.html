@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -13,14 +14,14 @@
 </head>
 
 <body>
-    <header>
+    <header class="sticky">
         <h2>Who wants a tree in</h2>
-        <h1>Chicago?</h1>
+        <h1>Chicago?<i class="fas fa-info-circle"></i></h1>
         <form>
             <div class="panel">
                 <input type="text" placeholder="ZIP code" />
-                <input type="submit" value="Open tree requests" />
-                <input type="submit" value="Completed tree requests" />
+                <button type="submit" value="Open tree requests">Open tree requests</button>
+                <button type="submit" value="Completed tree requests">Completed tree requests</button>
         </form>
 
     </header>
@@ -35,6 +36,17 @@
             <p class="community-area">Lincoln Park</p>
         </div> -->
     </div>
+    <div id="modal">
+		<div id="modal-textbox">
+            <a id="close" href="#">Close</a>
+			<h2>About Chicago's Tree Planting</h2>
+            <p>The Department of Streets and Sanitation's Bureau of Forestry plants trees along the public right-of-way throughout Chicago. The benefits of trees are numerous and ever increasingly important in this age of climate change, in achieving a cleaner, greener, sustainable environment.  Chicago property owners who want a new tree planted on their parkways may submit a request via CHI 311 for this free city service.</p>
+            <cite>City of Chicago - 311.chicago.gov</cite>
+            
+		</div>
+	</div>
+    <!-- <footer><p>Make a 311 Request</p></footer> -->
+   
 </body>
 
 </html>
