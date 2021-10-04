@@ -30,6 +30,7 @@ header h1, h2 {
 h1 {
     font-size: 3.3em;
     margin-top: 0em;
+    margin-bottom: .25em;
 
 }
 
@@ -48,26 +49,32 @@ header {
     min-height: 60px;
     justify-content: space-between;
     margin-bottom: 1.5em;
+    flex-wrap: wrap;
 }
 
 .panel button {
-    display: block;
-    width: 24%;
+    display: inline-block;
+    width: 49%;
     font-family: 'Open Sans', sans-serif;
-    font-size: .75em;
-    
+    font-size: 1em;
 }
 
 .panel input {
-width: 48%;
+width: 100%;
 font-size: 1.5em;
 text-align: center;
+margin-bottom: .6em;
+
 }
 
 .reminder {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+}
+
+.reminder p {
+    font-size: .9em;
 }
 
 select {
@@ -106,7 +113,7 @@ select {
     display: flex;
     justify-content: space-evenly;
     text-align: center;
-    font-size: .8em;
+    font-size: .75em;
     background-color: white;
     margin-bottom: 3px;
 }
@@ -151,7 +158,7 @@ i {
 	height: 100%;
 	width: 100%;
 	z-index: 1;
-	overflow: auto;
+	overflow: hidden;
 	display: none;
 }
 
@@ -170,6 +177,34 @@ i {
 
 
 @media (min-width: 600px) {
+    h1 {
+        font-size: 45px;
+        margin-top: 0em;
+        margin-bottom: .3em;
+        display: inline;
+        align-self: flex-end;
+
+    }
+
+    header h2 {
+        font-family: 'Kumbh Sans', sans-serif;
+        font-size: 42px;
+        display: inline;
+        align-self: flex-start;
+        margin-bottom: -54px;
+        margin-left: 12px;
+        /* color: blue; */
+    }
+
+    .reminder {
+        justify-content: space-evenly;
+    }
+
+    .reminder p {
+        font-size: 1.2em;
+    }
+
+
     .community-area {
         display: hidden;
     }
@@ -183,5 +218,27 @@ i {
         font-size: 1em;
     }
 
+    .panel {
+        flex-wrap: nowrap;
+    } 
+    .panel input {
+        width: 36%;
+        font-size: 1.5em;
+        text-align: center;
+        height: 45px;
+        }
 
+    .panel button {
+        display: inline-block;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1em;
+        padding: 0;
+        height: 45px;
+    }
+
+    #modal-textbox {
+        height: 330px;
+        width: 540px;
+    
+    }
 }
