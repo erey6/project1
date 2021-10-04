@@ -101,8 +101,9 @@ $(() => {
     //following line will look for either completion or create date for ordering
     let search = ''
     let filteringDate = ''
-    $('input').on('click', (e) => {
+    $('button').on('click', (e) => {
         const selection = $(e.target).val();
+        console.log(selection)
         if (selection === "Open tree requests") {
             search = 'Open'
             filteringDate = 'created_date'
