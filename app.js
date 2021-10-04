@@ -135,7 +135,9 @@ $(() => {
         $('.results').append($rowHeader)
         //render the .reminder her 34 results for 60630
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
-        
+        //toggle hidden from date dropdown in reminder row
+        $('select').toggleClass('hidden')
+
 
         for (const request of data) {
             const $div = $('<div>').addClass('row-result')
