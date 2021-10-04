@@ -149,6 +149,7 @@ $(() => {
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
         //toggle hidden from date dropdown in reminder row
         $('select').css('display', 'inline-block')
+        
 
         //filtering results by date
         $timeSpanDropdown = $('#time-span')
