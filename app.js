@@ -87,17 +87,18 @@ const readableDate = (date) => {
 }
 
 let oldestDate = '2019-01-01T00:00:00'
-const sixMonthsAgo = () => {
+
+const oldDate= (months) => {
     let d = new Date()
-    d.setMonth(d.getMonth() - 6)
-    return d
+    d.setMonth(d.getMonth() - months)
+    return d.toISOString().slice(0,10)
 }
 
-const yearAgo = () => {
-    let d = new Date()
-    d.setMonth(d.getMonth() - 12)
-    return d
-}
+// const yearAgo = () => {
+//     let d = new Date()
+//     d.setMonth(d.getMonth() - 12)
+//     return d
+// }
 
 const calculateDaysTook = (endDate, startDate) => {
     const endDateValue = new Date(endDate)
@@ -154,13 +155,12 @@ $(() => {
         $timeSpanDropdown = $('#time-span')
         $timeSpanDropdown.on('change', (e) => {
             if ($(e.target).val() === 'Year') {
-                let newDate = yearAgo()
-                console.log(newDate)
-                console.log(oldestDate)
+                let newDate = oldDate(12)
                 downloadData(zipCode, newDate)
             }
             if ($(e.target).val() === 'Six') {
-                console.log('six stuff')
+                let newDate = oldDate(6)
+                downloadData(zipCode, newDate)
             }
         })
 
