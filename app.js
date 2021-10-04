@@ -154,17 +154,14 @@ $(() => {
         //filtering results by date
         $timeSpanDropdown = $('#time-span')
         $timeSpanDropdown.on('change', (e) => {
-            if ($(e.target).val() === 'Year') {
-                let newDate = oldDate(12)
-                downloadData(zipCode, newDate)
-            }
-            if ($(e.target).val() === 'Six') {
-                let newDate = oldDate(6)
-                downloadData(zipCode, newDate)
-            }
             if ($(e.target).val() === '2019') {
                 downloadData(zipCode, oldestDate)
+            } else {
+                let monthsBack = $(e.target).val()
+                let newDate = oldDate(parseInt(monthsBack))
+                downloadData(zipCode, newDate)
             }
+
         })
 
 
