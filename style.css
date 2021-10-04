@@ -43,6 +43,17 @@ header {
     padding: 0 .9em;
 }
 
+.button {
+    box-shadow: 0 3px 6px #00000060;
+    transition-duration: .3s;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #879ca1;
+    color: #ffffff;
+}
+
 .panel {
     display:flex;
     flex-direction: row;
@@ -51,21 +62,22 @@ header {
     margin-bottom: 1.5em;
     flex-wrap: wrap;
 }
+.panel input {
+    width: 100%;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 6px;
+    }
 
 .panel button {
     display: inline-block;
-    width: 49%;
+    width: 48%;
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
+    margin-left: 4px;
 }
 
-.panel input {
-width: 100%;
-font-size: 1.5em;
-text-align: center;
-margin-bottom: .6em;
 
-}
 
 .reminder {
     display: flex;
@@ -106,8 +118,6 @@ select {
     border-radius: 6px;
     
 }
-
-
 
 .row-result {
     display: flex;
@@ -192,6 +202,7 @@ i {
         display: inline;
         align-self: flex-start;
         margin-bottom: -54px;
+        margin-top: 18px;
         margin-left: 12px;
         /* color: blue; */
     }
@@ -223,10 +234,11 @@ i {
     } 
     .panel input {
         width: 36%;
-        font-size: 1.5em;
+        font-size: 1em;
         text-align: center;
         height: 45px;
         }
+
 
     .panel button {
         display: inline-block;
