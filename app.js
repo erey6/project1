@@ -135,6 +135,8 @@ $(() => {
         $('.results').append($rowHeader)
         //render the .reminder her 34 results for 60630
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
+        
+
         for (const request of data) {
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
