@@ -78,7 +78,6 @@ const comAreas = ["",
     "Edgewater"]
 
 const readableDate = (date) => {
-    // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const d = new Date(date)
     const month = d.getMonth() + 1;
     const day = d.getDate();
@@ -161,6 +160,9 @@ $(() => {
             if ($(e.target).val() === 'Six') {
                 let newDate = oldDate(6)
                 downloadData(zipCode, newDate)
+            }
+            if ($(e.target).val() === '2019') {
+                downloadData(zipCode, oldestDate)
             }
         })
 
