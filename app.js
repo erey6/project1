@@ -140,6 +140,7 @@ $(() => {
     //function to render query results
     const renderData = (data, zipCode) => {
         $('.results').empty();
+        $('.paging-row').remove();
         //set row header based on search
         const $rowHeader = $('<div>').addClass('row-header')
         if (search === "Completed") {
@@ -238,7 +239,7 @@ $(() => {
     }
 
     const downloadData = (zipCode, oldestDate) => {
-
+        
         $.ajax({
             url: `https://data.cityofchicago.org/resource/v6vf-nfxy.json?sr_type=Tree%20Planting%20Request&duplicate=false&status=${search}&zip_code=${zipCode}&$where=${filteringDate}>='${oldestDate}'&$order=${filteringDate}%20DESC`,
             type: "GET",

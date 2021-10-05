@@ -93,13 +93,18 @@ header {
 }
 
 #dropdown {
-    width: 48%;
-    text-align: center;
+    width: 47%;
+}
 
+#time-span {
+    width: 100%;
+    align-self: right;
 }
 
 select {
     padding: 3px 0;
+    text-align: center;
+    
 }
 
 .paging-row {
