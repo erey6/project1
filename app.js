@@ -77,6 +77,10 @@ const comAreas = ["",
     "O'Hare",
     "Edgewater"]
 
+//initialize page counter
+let currentPage = 0
+
+//changes iso date into simple format for rendering
 const readableDate = (date) => {
     const d = new Date(date)
     const month = d.getMonth() + 1;
@@ -85,20 +89,18 @@ const readableDate = (date) => {
     return `${month}/${day}/${year}`
 }
 
+//basic search goes back to 1/1/2019
 let oldestDate = '2019-01-01T00:00:00'
 
-const oldDate= (months) => {
+
+//function to get x months worth of data
+const oldDate = (months) => {
     let d = new Date()
     d.setMonth(d.getMonth() - months)
-    return d.toISOString().slice(0,10)
+    return d.toISOString().slice(0, 10)
 }
 
-// const yearAgo = () => {
-//     let d = new Date()
-//     d.setMonth(d.getMonth() - 12)
-//     return d
-// }
-
+//calculates difference between request and completed dates
 const calculateDaysTook = (endDate, startDate) => {
     const endDateValue = new Date(endDate)
     const startDateValue = new Date(startDate)
@@ -107,10 +109,11 @@ const calculateDaysTook = (endDate, startDate) => {
     return Math.floor(diff / 86400000)
 }
 
+//begin jquery wait for onload
 $(() => {
     //sets search type to open or completed request
-    //following line will look for either completion or create date for ordering
     let search = ''
+    //following line will look for either completion or create date for ordering
     let filteringDate = ''
     $('button').on('click', (e) => {
         const selection = $(e.target).val();
@@ -123,25 +126,22 @@ $(() => {
         }
     })
 
+    //main form for query
     $('form').on('submit', (event) => {
+        currentPage = 0
         event.preventDefault();
         const zipCode = $('input[type="text"]').val();
         $('form').trigger('reset');
         downloadData(zipCode, oldestDate)
         //also resets timespan dropdown to first one
-       $('#time-span').val('2019')
-        
+        $('#time-span').val('2019')
     })
 
-
-
+    //function to render query results
     const renderData = (data, zipCode) => {
-        //empty restults class
         $('.results').empty();
         //set row header based on search
-        const $rowHeader =
-            $('<div>').addClass('row-header')
-
+        const $rowHeader = $('<div>').addClass('row-header')
         if (search === "Completed") {
             $rowHeader.append([$('<p>').text('Address'), $('<p>').text('Date completed'), $('<p>').addClass('community-area').text('Community Area')])
         } else {
@@ -152,7 +152,6 @@ $(() => {
         $('.reminder p').text(`${data.length} results for ${zipCode}`)
         //toggle hidden from date dropdown in reminder row
         $('select').css('display', 'inline-block')
-        
 
         //filtering results by date
         $timeSpanDropdown = $('#time-span')
@@ -166,9 +165,26 @@ $(() => {
             }
 
         })
+        //chunks data into pages
+        let numOfPages = 1
+        if (data.length > 9) {
+            numOfPages = Math.ceil(data.length / 9)
+        }
+        const aPage = data.slice(currentPage, currentPage + 9);
+        $rightCaret = $('<i>').addClass('fas fa-angle-double-right')
+        $leftCaret = $('<i>').addClass('fas fa-angle-double-left')
+        if (currentPage === 0) {
+            $leftCaret.appendTo('.reminder')
+        }
+        if (numOfPages > 1 && currentPage < numOfPages) {
+            $rightCaret.appendTo('.reminder')
+        }
 
+        //loops throught to place on page
+        //first add page arrows 
 
-        for (const request of data) {
+        for (const request of aPage) {
+
             const $div = $('<div>').addClass('row-result')
             $div.append($('<p>').text(`${request.street_address}`))
             //pulls community area name from array

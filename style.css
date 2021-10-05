@@ -103,6 +103,7 @@ select {
 .row-header p {
     width: 48%;
     text-align: center;
+    margin: .2em 0;
 
 }
 
