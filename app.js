@@ -169,19 +169,26 @@ $(() => {
         let numOfPages = 1
         if (data.length > 9) {
             numOfPages = Math.ceil(data.length / 9)
+            
         }
         const aPage = data.slice(currentPage, currentPage + 9);
-        $rightCaret = $('<i>').addClass('fas fa-angle-double-right')
-        $leftCaret = $('<i>').addClass('fas fa-angle-double-left')
-        if (currentPage === 0) {
-            $leftCaret.appendTo('.reminder')
+        const $rightCaret = $('<p>').text('Next page ')
+        $rightCaret.append($('<i>').addClass('fas fa-angle-double-right'))
+        const $leftCaret = $('<p>').text(' Previous page')
+        $leftCaret.prepend($('<i>').addClass('fas fa-angle-double-left'))
+
+        if (currentPage === 0 && data.length > 9) {
+            const $pagingDiv = $('<div>').addClass('paging-row')
+            $pagingDiv.appendTo('.reminder') 
+            $leftCaret.appendTo($pagingDiv)
+            if (numOfPages > 1 && currentPage < numOfPages) {
+                $rightCaret.appendTo($pagingDiv)
+            }
         }
-        if (numOfPages > 1 && currentPage < numOfPages) {
-            $rightCaret.appendTo('.reminder')
-        }
+        
 
         //loops throught to place on page
-        //first add page arrows 
+      
 
         for (const request of aPage) {
 
