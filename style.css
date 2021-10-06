@@ -144,6 +144,11 @@ select {
 
 .paging-row p:last-child {
     text-align: right;
+    cursor: pointer;
+}
+
+.paging-row p:first-child {
+    cursor: pointer;
 }
 
 .row-header {
