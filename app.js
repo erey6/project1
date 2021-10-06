@@ -185,28 +185,28 @@ $(() => {
         $leftCaret.prepend($('<i>').addClass('fas fa-angle-double-left'))
         //left caret listenter
         $leftCaret.on('click', () => {
-            currentPage-=1
+            currentPage -= 1
             renderData(data, zipCode)
         })
         const $pagingDiv = $('<div>').addClass('paging-row')
         const $pageNumbers = $('<p>').text(`Page ${currentPage} of ${numOfPages}`)
         $pageNumbers.attr('id', 'page-numbers')
         if (currentPage > 1 && numOfPages === currentPage) {
-            $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
             $pageNumbers.appendTo($pagingDiv)
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
         } else if (currentPage === 1 && numOfPages > 1) {
-            $pagingDiv.appendTo('.reminder')
+            // $pagingDiv.appendTo('.reminder')
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
             $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
         } else {
-            $pagingDiv.appendTo('.reminder')
+            // $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
             $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
         }
+        $pagingDiv.appendTo('.reminder')
 
         //loops throught to place on page
 

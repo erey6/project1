@@ -11,7 +11,14 @@ body {
     z-index: 0;
     padding: 6px 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #815c3b;
+    min-height: 873px;
+    /* background-color: #815c3b; */
+    background-image: url('./img/city-trees.jpeg');
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+    overflow: hidden;
 }
 
 h1, h2, h3, h4, h5 {
@@ -110,8 +117,9 @@ select {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    padding-bottom: .75em;
+    padding: .75em;
     margin: 0 0;
+    background-color: #ffffff90;
 }
 
 .paging-row div {
@@ -124,12 +132,14 @@ select {
 
 .paging-row i {
     font-size: .8rem;
-    color:#d4d3d0;
+    /* color:#d4d3d0; */
+    color: #182b0f;
 }
 
 .reminder .paging-row p {
     font-family: 'Open Sans', sans-serif;
-    color: white;
+    /* color: white; */
+    color: #182b0f;
     font-size: .75rem;
     margin: 0;
 }
@@ -142,7 +152,8 @@ select {
     font-weight: bold;
     display: flex;
     justify-content: space-evenly;
-    color: #182b0f;
+    /* color: #182b0f; */
+    color: #d4d3d0;
     
 }
 .row-header p {
@@ -160,7 +171,8 @@ select {
     display: flex;
     flex-flow: column;
     text-align: left;
-    background-color: #d4d3d0;
+    /* background-color: #d4d3d0; */
+    background-color: #815c3b;
     border-radius: 6px;
     
 }
@@ -170,7 +182,7 @@ select {
     justify-content: space-evenly;
     text-align: center;
     font-size: .75rem;
-    background-color: white;
+    background-color: #d4d3d0;
     margin-bottom: 3px;
 }
 
@@ -231,6 +243,13 @@ header i {
     color: #6f844a;
 }
 
+footer {
+    font-size: .3em;
+    color: white;
+    position: fixed;
+    bottom: 60px;
+}
+
 
 @media (min-width: 600px) {
     h1 {
@@ -285,13 +304,15 @@ header i {
         height: 45px;
         }
 
-
     .panel button {
         display: inline-block;
         font-family: 'Open Sans', sans-serif;
         font-size: 1rem;
         padding: 0;
         height: 45px;
+    }
+    .paging-row {
+        background-color: #ffffff00;
     }
 
     #modal-textbox {
