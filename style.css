@@ -81,7 +81,6 @@ header {
     width: 48%;
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
-    margin-left: 4px;
 }
 
 .reminder {
@@ -255,6 +254,10 @@ footer {
 
 
 @media (min-width: 600px) {
+
+    header {
+        margin-top: 1.5em;
+    }
     h1 {
         font-size: 43px;
         margin-top: 0em;
@@ -309,6 +312,7 @@ footer {
     .panel button {
         padding: 0;
         height: 45px;
+        margin-left: .6em;
     }
     .paging-row {
         background-color: #ffffff00;

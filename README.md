@@ -19,3 +19,7 @@ But I found it easier to filter via the API request. There are three variables t
 One of the main challenges I ran into was working with the ISO dates. 
 
 Another challenge after I completed the basic functional app was adding paging. 
+
+
+future add sort
+add map
