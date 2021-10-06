@@ -20,12 +20,12 @@ The APP makes a request to the API seeking results based on ZIP code. There are 
 
 In results, the date of the request or completion is displayed with a 'more' button. The more button expands the area to give the user additional information.
 
-#### Stretch functionality:
+Because in some cases, there can be hundreds of results returned, the data is displayed over several pages.
+The I employed array slicing that takes plage when a user selects to page forward or page backward.
 
 
 #### Future upgrades: 
 
 Future I would change the date drop down to be by year: "2021 requests," "2020 requests" etc.
-
 
 

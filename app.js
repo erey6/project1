@@ -79,8 +79,14 @@ const comAreas = ["",
 
 //initialize page counter
 let currentPage = 1
+//basic search goes back to 1/1/2019
+let oldestDate = '2019-01-01T00:00:00'
+//sets search type to open or completed request
+let search = ''
+//following line will look for either completion or create date for ordering
+let filteringDate = ''
 
-//changes iso date into simple format for rendering
+//function changes iso date into simple format for rendering
 const readableDate = (date) => {
     const d = new Date(date)
     const month = d.getMonth() + 1;
@@ -89,10 +95,6 @@ const readableDate = (date) => {
     return `${month}/${day}/${year}`
 }
 
-//basic search goes back to 1/1/2019
-let oldestDate = '2019-01-01T00:00:00'
-
-
 //function to get x months worth of data
 const oldDate = (months) => {
     let d = new Date()
@@ -100,7 +102,7 @@ const oldDate = (months) => {
     return d.toISOString().slice(0, 10)
 }
 
-//calculates difference between request and completed dates
+//function calculates difference between request and completed dates
 const calculateDaysTook = (endDate, startDate) => {
     const endDateValue = new Date(endDate)
     const startDateValue = new Date(startDate)
@@ -111,10 +113,8 @@ const calculateDaysTook = (endDate, startDate) => {
 
 //begin jquery wait
 $(() => {
-    //sets search type to open or completed request
-    let search = ''
-    //following line will look for either completion or create date for ordering
-    let filteringDate = ''
+    
+    //main panel button listeners
     $('button').on('click', (e) => {
         const selection = $(e.target).val();
         if (selection === "Open tree requests") {
@@ -210,8 +210,10 @@ $(() => {
         }
         $pagingDiv.appendTo('.reminder')
 
-        //loops through data results to place on page
-
+////////////////////////////////////////////
+//loops through data results to place on page
+////////////////////////////////////////////
+        
         for (const request of aPage) {
 
             const $div = $('<div>').addClass('row-result')
@@ -267,6 +269,9 @@ $(() => {
         }
     }
 
+////////////////////////////////////////
+//// The Ajax Request
+//////////////////////////////////////
     const downloadData = (zipCode, oldestDate) => {
 
         $.ajax({
@@ -286,6 +291,11 @@ $(() => {
         )
 
     }
+
+//////////////////////////////////////
+//// informational modal
+//////////////////////////////////////
+
     const $about = $('.fa-info-circle')
     $about.on('click', (e) => {
         $('#about-modal').css('display', 'block')
@@ -295,7 +305,10 @@ $(() => {
     $modalClose.on('click', (e) => {
         $('#about-modal').css('display', 'none');
     })
-    //gets #map node to pass to google maps
+ 
+//////////////////////////////////////
+//Google mapping function
+////////////////////////////////////
 
     const openMap = (latitude, longitude) => {
         let lat = parseFloat(latitude);
