@@ -78,7 +78,7 @@ const comAreas = ["",
     "Edgewater"]
 
 //initialize page counter
-let currentPage = 0
+let currentPage = 1
 
 //changes iso date into simple format for rendering
 const readableDate = (date) => {
@@ -128,7 +128,7 @@ $(() => {
 
     //main form for query
     $('form').on('submit', (event) => {
-        currentPage = 0
+        currentPage = 1
         event.preventDefault();
         const zipCode = $('input[type="text"]').val();
         $('form').trigger('reset');
@@ -170,26 +170,40 @@ $(() => {
         let numOfPages = 1
         if (data.length > 9) {
             numOfPages = Math.ceil(data.length / 9)
-            
+
         }
-        const aPage = data.slice(currentPage, currentPage + 9);
+        const aPage = data.slice((currentPage - 1) * 9, currentPage * 9);
         const $rightCaret = $('<p>').text('Next page ')
         $rightCaret.append($('<i>').addClass('fas fa-angle-double-right'))
+        //right caret listener
+        $rightCaret.on('click', () => {
+            currentPage += 1
+            renderData(data, zipCode)
+        })
         const $leftCaret = $('<p>').text(' Previous page')
         $leftCaret.prepend($('<i>').addClass('fas fa-angle-double-left'))
-
-        if (currentPage === 0 && data.length > 9) {
-            const $pagingDiv = $('<div>').addClass('paging-row')
-            $pagingDiv.appendTo('.reminder') 
+        //left caret listenter
+        $leftCaret.on('click', () => {
+            currentPage-=1
+            renderData(data, zipCode)
+        })
+        const $pagingDiv = $('<div>').addClass('paging-row')
+        if (currentPage > 1 && numOfPages === currentPage) {
+            $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
-            if (numOfPages > 1 && currentPage < numOfPages) {
-                $rightCaret.appendTo($pagingDiv)
-            }
+            $('<div>').addClass('blank-div').appendTo($pagingDiv)
+        } else if (currentPage === 1 && numOfPages > 1) {
+            $pagingDiv.appendTo('.reminder')
+            $('<div>').addClass('blank-div').appendTo($pagingDiv)
+            $rightCaret.appendTo($pagingDiv)
+        } else {
+            console.log('maybe here')
+            $pagingDiv.appendTo('.reminder')
+            $leftCaret.appendTo($pagingDiv)
+            $rightCaret.appendTo($pagingDiv)
         }
-        
 
         //loops throught to place on page
-      
 
         for (const request of aPage) {
 
@@ -239,7 +253,7 @@ $(() => {
     }
 
     const downloadData = (zipCode, oldestDate) => {
-        
+
         $.ajax({
             url: `https://data.cityofchicago.org/resource/v6vf-nfxy.json?sr_type=Tree%20Planting%20Request&duplicate=false&status=${search}&zip_code=${zipCode}&$where=${filteringDate}>='${oldestDate}'&$order=${filteringDate}%20DESC`,
             type: "GET",
