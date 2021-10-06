@@ -7,19 +7,25 @@ The goal of the project was to build an app that uses AJAX to make a request to 
 
 
   - The app uses HTML, CSS JavaScript and JQuery.
+  - The app gets data from https://data.cityofchicago.org/ and the Google Maps API.
+  - The app uses fonts from Google.
+  - Tree icon from from ICONS8.com. Info icon from fontawesome.
 
-#### Approch:  
+#### Approach:  
 
-My first approach was to first build the app to return all tree planting requests for all dates, completed or not completed for the requested ZIP code. And then the app would filter those results.
-
-But I found it easier to filter via the API request. There are three variables that change in the API request.
-  - One variable for how far back the data should go.
+The APP makes a request to the API seeking results based on ZIP code. There are three variables that change in the API request.
   - One variable for the ZIP code being searched. 
+  - One variable for how far back the data should go.
+  - A last variable for whether the tree request is 'complete' or 'open.'
 
-One of the main challenges I ran into was working with the ISO dates. 
+In results, the date of the request or completion is displayed with a 'more' button. The more button expands the area to give the user additional information.
 
-Another challenge after I completed the basic functional app was adding paging. 
+#### Stretch functionality:
 
 
-future add sort
-add map
+#### Future upgrades: 
+
+Future I would change the date drop down to be by year: "2021 requests," "2020 requests" etc.
+
+
+
