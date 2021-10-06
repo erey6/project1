@@ -196,12 +196,14 @@ $(() => {
             $pageNumbers.appendTo($pagingDiv)
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
         } else if (currentPage === 1 && numOfPages > 1) {
-            // $pagingDiv.appendTo('.reminder')
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
             $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
+        }else if (currentPage === 1 && numOfPages === 1) {
+            $('<div>').addClass('blank-div').appendTo($pagingDiv)
+            $pageNumbers.appendTo($pagingDiv)
+            $('<div>').addClass('blank-div').appendTo($pagingDiv)
         } else {
-            // $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
             $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
