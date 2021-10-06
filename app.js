@@ -109,7 +109,7 @@ const calculateDaysTook = (endDate, startDate) => {
     return Math.floor(diff / 86400000)
 }
 
-//begin jquery wait for onload
+//begin jquery wait
 $(() => {
     //sets search type to open or completed request
     let search = ''
@@ -210,7 +210,7 @@ $(() => {
         }
         $pagingDiv.appendTo('.reminder')
 
-        //loops throught to place on page
+        //loops through data results to place on page
 
         for (const request of aPage) {
 
@@ -219,6 +219,11 @@ $(() => {
             //pulls community area name from array
             const $communityArea = $('<p>').addClass('hidden').text(`Community Area: ${comAreas[request.community_area]}`)
             const $ward = $('<p>').addClass('hidden').text(`City Ward: ${request.ward}`)
+            //addMapButton
+            const $mapButton = $('<button>').text('map').addClass('more-button')
+            $mapButton.on('click', (e) => {
+                openMap(request.latitude, request.longitude)
+            })
             const $rightSide = $('<div>').addClass('right-side')
 
             //morebutton
@@ -230,12 +235,13 @@ $(() => {
                     $(e.target).text('more')
                 }
                 const $rightContents = $(e.target).parents().eq(1).children(1)
-                console.log($rightContents.length)
                 //loops through right side contents, hides all but last chld
                 for (let i = $rightContents.length - 1; i > 0; i--) {
                     $rightContents.eq(i).toggleClass('hidden')
                 }
             })
+            
+
 
             if (search === "Completed") {
                 const dateString = readableDate(request.closed_date)
@@ -245,12 +251,14 @@ $(() => {
                 const $daysTookText = $('<p>').text(`Days from request to completion: ${daysTook}`)
                 $daysTookText.addClass('hidden')
                 $date.append($moreButton)
+                $ward.append($mapButton)
                 $rightSide.append([$date, $daysTookText, $communityArea, $ward])
             } else {
                 const dateString = readableDate(request.created_date)
                 $div.append($rightSide)
                 const $date = ($('<p>').text(`${dateString}`))
                 $date.append($moreButton)
+                $ward.append($mapButton)
                 $rightSide.append([$date, $communityArea, $ward])
             }
 
@@ -280,11 +288,38 @@ $(() => {
     }
     const $about = $('.fa-info-circle')
     $about.on('click', (e) => {
-        $('#modal').css('display', 'block')
+        $('#about-modal').css('display', 'block')
     })
 
     const $modalClose = $('#close')
     $modalClose.on('click', (e) => {
-        $('#modal').css('display', 'none');
+        $('#about-modal').css('display', 'none');
     })
+    //gets #map node to pass to google maps
+
+    const openMap = (latitude, longitude) => {
+        let lat = parseFloat(latitude);
+        let lng = parseFloat(longitude);
+        const $map = $('#map').get(0) 
+        const map = new google.maps.Map($map, {
+            center: { lat: lat, lng: lng },
+            zoom: 15,
+            disableDefaultUI: true,
+            zoomControl: true,
+        
+          });
+    
+          new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map,
+            icon: './img/icons8-tree-24.png'
+          }); 
+        $('#map-modal').css('display', 'block')
+    }
+    
+    const $mapClose = $('#map-close')
+    $mapClose.on('click', (e) => {
+        $('#map-modal').css('display', 'none');
+    })
+    
 })

@@ -219,8 +219,27 @@ header i {
     vertical-align: super;
     margin: 0 6px;
 }
+ #map-modal{
+    display: none;
+ }
+ 
+ #map-close {
+     background-color: white;
+     text-decoration: none;
+     padding: 6px;
+     display: block;
+     width: 60px;
+     margin: 3em 0 -6em 3em;
+ }
 
-#modal {
+#map {
+    height: 420px;
+    width: 360px;
+    background-color: white;
+    margin: 150px auto;
+  }
+
+.modal {
 	background-color: rgba(0,0,0,0.6);
 	position: fixed;
 	top: 0;
@@ -232,16 +251,17 @@ header i {
 	display: none;
 }
 
+
 #modal-textbox {
 	background-color: white;
-	height: 540px;
+	height: 600px;
 	width: 300px;
 	border-radius: 2px;
-	margin: 150px auto;
+	margin: 90px auto;
     padding: 21px;
 }
 
-#modal h2 {
+#about-modal h2 {
     color: #6f844a;
 }
 
@@ -317,10 +337,11 @@ footer {
     .paging-row {
         background-color: #ffffff00;
     }
-
+    #map-close {
+        margin: 3em 0 -6em 24em;
+    }
     #modal-textbox {
-        height: 330px;
-        width: 540px;
-    
+        height: 420px;
+        width: 510px;
     }
 }
