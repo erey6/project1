@@ -1,26 +1,20 @@
 # tree-placement-app 
 
-Tree Placement App
-
-An application used that uses the City of Chicagos 311 Requests API to sort data by ZIP code and status on resident requests for new trees.
+An application that uses the City of Chicagos 311 Request's API to return data by ZIP code and status on resident requests for new trees. 
 
 
+The goal of the project was to build an app that uses AJAX to make a request to an external API, incorporates responsive design and has one or more complex user interface modules. 
 
 
+  - The app uses HTML, CSS JavaScript and JQuery.
 
+#### Approch:  
 
-  - What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
-  - What did you set out to build?
-  - Why was this project challenging and therefore a really good learning experience?
-  - What were some unexpected obstacles?
-  - What tools did you use to implement this project?
-      - This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.  
+My first approach was to first build the app to return all tree planting requests for all dates, completed or not completed for the requested ZIP code. And then the app would filter those results.
 
-#### Example:  
-
-This was a 3 week long project built during my third module at Turing School of Software and Design. Project goals included using technologies learned up until this point and familiarizing myself with documentation for new features.  
-
-Originally I wanted to build an application that allowed users to pull data from the Twitter API based on what they were interested in, such as 'most tagged users'. I started this process by using the `create-react-app` boilerplate, then adding `react-router-4.0` and `redux`.  
+But I found it easier to filter via the API request. There are three variables that change in the API request.
+  - One variable for how far back the data should go.
+  - One variable for the ZIP code being searched. 
 
 One of the main challenges I ran into was working with the ISO dates. 
 

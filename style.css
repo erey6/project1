@@ -8,11 +8,9 @@
 
 body {
     margin: 9px 1em;
-    z-index: 0;
     padding: 6px 0;
     font-family: 'Open Sans', sans-serif;
     min-height: 873px;
-    /* background-color: #815c3b; */
     background-image: url('./img/city-trees.jpeg');
     background-color: #ffffff;
     background-repeat: no-repeat;
@@ -53,7 +51,7 @@ header {
 
 .button {
     box-shadow: 0 3px 6px #00000060;
-    transition-duration: .3s;
+    transition-duration: .21s;
     border-radius: 5px;
     background-color: white;
 }
@@ -300,14 +298,10 @@ footer {
     .panel input {
         width: 36%;
         font-size: 1rem;
-        text-align: center;
         height: 45px;
         }
 
     .panel button {
-        display: inline-block;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1rem;
         padding: 0;
         height: 45px;
     }
