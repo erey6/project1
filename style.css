@@ -78,8 +78,6 @@ header {
     margin-left: 4px;
 }
 
-
-
 .reminder {
     display: flex;
     justify-content: space-between;
@@ -89,7 +87,7 @@ header {
 
 .reminder p {
     font-size: .9rem;
-    width: 48%;
+    width: 36%;
 }
 
 #dropdown {
@@ -113,6 +111,14 @@ select {
     justify-content: space-between;
     padding-bottom: .75em;
     margin: 0 0;
+}
+
+.paging-row div {
+    width: 32%;
+}
+
+#page-numbers {
+    text-align: center;
 }
 
 .paging-row i {

@@ -158,8 +158,10 @@ $(() => {
         $timeSpanDropdown = $('#time-span')
         $timeSpanDropdown.on('change', (e) => {
             if ($(e.target).val() === '2019') {
+                currentPage = 1
                 downloadData(zipCode, oldestDate)
             } else {
+                currentPage = 1
                 let monthsBack = $(e.target).val()
                 let newDate = oldDate(parseInt(monthsBack))
                 downloadData(zipCode, newDate)
@@ -170,7 +172,6 @@ $(() => {
         let numOfPages = 1
         if (data.length > 9) {
             numOfPages = Math.ceil(data.length / 9)
-
         }
         const aPage = data.slice((currentPage - 1) * 9, currentPage * 9);
         const $rightCaret = $('<p>').text('Next page ')
@@ -188,18 +189,22 @@ $(() => {
             renderData(data, zipCode)
         })
         const $pagingDiv = $('<div>').addClass('paging-row')
+        const $pageNumbers = $('<p>').text(`Page ${currentPage} of ${numOfPages}`)
+        $pageNumbers.attr('id', 'page-numbers')
         if (currentPage > 1 && numOfPages === currentPage) {
             $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
+            $pageNumbers.appendTo($pagingDiv)
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
         } else if (currentPage === 1 && numOfPages > 1) {
             $pagingDiv.appendTo('.reminder')
             $('<div>').addClass('blank-div').appendTo($pagingDiv)
+            $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
         } else {
-            console.log('maybe here')
             $pagingDiv.appendTo('.reminder')
             $leftCaret.appendTo($pagingDiv)
+            $pageNumbers.appendTo($pagingDiv)
             $rightCaret.appendTo($pagingDiv)
         }
 
