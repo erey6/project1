@@ -27,5 +27,5 @@ The I employed array slicing that takes plage when a user selects to page forwar
 #### Future upgrades: 
 
 Future I would change the date drop down to be by year: "2021 requests," "2020 requests" etc.
-
+There is still not enough room for some mobile devices and for the last list item on the page. 
 

@@ -95,7 +95,7 @@ const readableDate = (date) => {
     return `${month}/${day}/${year}`
 }
 
-//function to get x months worth of data
+//function to get date 12 or 6 months ago etc.
 const oldDate = (months) => {
     let d = new Date()
     d.setMonth(d.getMonth() - months)
@@ -170,10 +170,10 @@ $(() => {
         })
         //chunks data into pages
         let numOfPages = 1
-        if (data.length > 9) {
-            numOfPages = Math.ceil(data.length / 9)
+        if (data.length > 8) {
+            numOfPages = Math.ceil(data.length / 8)
         }
-        const aPage = data.slice((currentPage - 1) * 9, currentPage * 9);
+        const aPage = data.slice((currentPage - 1) * 8, currentPage * 8);
         const $rightCaret = $('<p>').text('Next page ')
         $rightCaret.append($('<i>').addClass('fas fa-angle-double-right'))
         //right caret listener
