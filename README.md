@@ -6,7 +6,7 @@ The goal of the project was to build an app that uses AJAX to make a request to 
 
   - The app uses HTML, CSS JavaScript and JQuery.
   - The app gets data from https://data.cityofchicago.org/ and the Google Maps API.
-  - The app uses fonts from Google.
+  - The app uses fonts and mapping from Google.
   - Tree icon from from ICONS8.com. Info icon from fontawesome.
 
 #### Approach:  
@@ -16,9 +16,12 @@ The APP makes a request to the API seeking results based on ZIP code. There are 
   - One variable for how far back the data should go.
   - A last variable for whether the tree request is 'complete' or 'open.'
 
-In results, the date of the request or completion is displayed with a 'more' button. The more button expands the area to give the user additional information.
+In results, the date of the request or completion is displayed with a 'more' button. The more button expands the area to give the user additional information. Additional information includes a map generated using the Google Maps API that receives a latitude and longitude from the 311 results.  
+
 
 Because in some cases, there can be hundreds of results returned, the data is displayed over several pages.
+
+
  #### Live site:
 https://trees-app-a086f6.netlify.app/
 
@@ -26,4 +29,5 @@ https://trees-app-a086f6.netlify.app/
 
 - I would change the date drop down to be by year: "2021 requests," "2020 requests" etc.
 - There is still not enough room for some mobile devices and for the last list item on the page. It should be more responsive to smallest of devices.
+- Return error for bad zip code or non integer input in main form.
 
