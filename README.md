@@ -1,6 +1,6 @@
 # tree-placement-app 
 
-An application that uses the City of Chicagos 311 Request's API to return data by ZIP code and status on resident requests for new trees. 
+An application that uses the City of Chicago's 311 Requests API to return data by ZIP code and status on resident requests for new trees. 
 
 The goal of the project was to build an app that uses AJAX to make a request to an external API, incorporates responsive design and has one or more complex user interface modules. 
 
