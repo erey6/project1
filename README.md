@@ -2,6 +2,9 @@
 
 An application that uses the City of Chicago's 311 Requests API to return data by ZIP code and status on resident requests for new trees. 
 
+ #### Live site:
+https://trees-app-a086f6.netlify.app/
+
 The goal of the project was to build an app that uses AJAX to make a request to an external API, incorporates responsive design and has one or more complex user interface modules. 
 
   - The app uses HTML, CSS JavaScript and JQuery.
@@ -21,9 +24,6 @@ In results, the date of the request or completion is displayed with a 'more' but
 
 Because in some cases, there can be hundreds of results returned, the data is displayed over several pages.
 
-
- #### Live site:
-https://trees-app-a086f6.netlify.app/
 
 #### Future upgrades: 
 
