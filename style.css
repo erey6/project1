@@ -6,17 +6,22 @@
   
 }
 
-body {
-    margin: 9px 1em;
-    padding: 6px 0;
-    font-family: 'Open Sans', sans-serif;
-    min-height: 963px;
+html {
+
     background-image: url('./img/city-trees.jpeg');
     background-color: #ffffff;
     background-repeat: no-repeat;
     background-position: left bottom;
     background-size: cover;
     overflow: hidden;
+}
+
+main {
+    margin: 9px 1em;
+    padding: 6px 0;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 963px;
+    
 }
 
 h1, h2, h3, h4, h5 {
@@ -310,7 +315,7 @@ footer {
         display: hidden;
     }
 
-    body {
+    main {
         width: 660px;
         margin: 0 auto;
     }
