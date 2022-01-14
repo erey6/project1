@@ -5,6 +5,8 @@ An application that uses the City of Chicago's 311 Requests API to return data b
  #### Live site:
 https://trees-app-a086f6.netlify.app/
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc13a5e3-6d89-4e4f-9270-fb6f1a3a677f/deploy-status)](https://app.netlify.com/sites/trees-app-a086f6/deploys)
+
 The goal of the project was to build an app that uses AJAX to make a request to an external API, incorporates responsive design and has one or more complex user interface modules. 
 
   - The app uses HTML, CSS JavaScript and JQuery.
